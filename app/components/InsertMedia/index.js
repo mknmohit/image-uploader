@@ -7,6 +7,7 @@
 import React from 'react';
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types';
+import { toLower } from 'lodash';
 
 import uploadIcon from 'images/icons/upload.svg';
 import Styled from './style';
@@ -18,8 +19,16 @@ function InsertMedia({
 
   function handleImageChange(event) {
     const {
-      target: { files },
+      target: { files, value },
     } = event;
+    const filePath =  toLower(value);
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.bmp|\.tiff|\.raw)$/i;
+
+    if(!allowedExtensions.exec(filePath)){
+      event.target.value = null;
+      return alert('Please upload file having extensions:\njpg, jpeg, png, bmp, tiff and raw only.');
+    }
+
     const imageURL = URL.createObjectURL(files[0]);
     handlePreviewUrl(imageURL);
     history.push('/preview')
@@ -33,6 +42,7 @@ function InsertMedia({
           type="file"
           name="file"
           id="file"
+          accept="image/*"
           onChange={handleImageChange}
         />
         <label htmlFor="file">
@@ -40,7 +50,7 @@ function InsertMedia({
         </label>
         <Styled.List>
           <Styled.Item>Image should be 1024 x 1024 pixels</Styled.Item>
-          <Styled.Item>Acceptable file type: jpg, jpeg, png, svg</Styled.Item>
+          <Styled.Item>Acceptable file type: jpg, jpeg, png, bmp, tiff, raw</Styled.Item>
         </Styled.List>
       </Styled.Card>
     </Styled.Root>
