@@ -12,6 +12,7 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import InsertMedia from 'components/InsertMedia';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -20,7 +21,7 @@ export function HomePage() {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
-  return <div></div>;
+  return <InsertMedia />;
 }
 
 HomePage.propTypes = {
