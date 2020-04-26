@@ -2,14 +2,6 @@ import styled from 'styled-components';
 
 const Root = styled.div`
   display: flex;
-  background-image: linear-gradient(
-    to right bottom,
-    #667eea,
-    #6e71d8,
-    #7364c6,
-    #7657b4,
-    #764ba2
-  );
   min-width: 100%;
   min-height: 100%;
   align-items: center;
