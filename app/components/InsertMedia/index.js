@@ -19,11 +19,6 @@ function InsertMedia() {
     } = event;
     const imageURL = URL.createObjectURL(files[0]);
     setPreviewURL(imageURL);
-    // const imageData = new FormData();
-    // imageData.append('image', files[0]);
-    // imageData.append('file_name', files[0].name);
-    // setImageUploadName(files[0].name);
-    // onImageUpload(imageData, imageURL, itemIndex);
   }
 
   return (
@@ -35,8 +30,6 @@ function InsertMedia() {
           name="file"
           id="file"
           onChange={handleImageChange}
-          // name={name}
-          // componentName={componentName}
         />
         <label htmlFor="file">
           <Styled.UploadBtn>Choose Image</Styled.UploadBtn>
