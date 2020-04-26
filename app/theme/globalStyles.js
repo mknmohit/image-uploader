@@ -16,7 +16,15 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
+    display: flex;
     background-color: #fafafa;
+    min-height: 100%;
+    min-width: 100%;
+  }
+
+  #app > div,
+  #app > div > div {
+    display: flex;
     min-height: 100%;
     min-width: 100%;
   }
