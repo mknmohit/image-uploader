@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types';
 
@@ -13,17 +13,16 @@ import Styled from './style';
 
 function InsertMedia({
   handlePreviewUrl,
+  history,
 }) {
-
-  const [previewURL, setPreviewURL] = useState('');
 
   function handleImageChange(event) {
     const {
       target: { files },
     } = event;
     const imageURL = URL.createObjectURL(files[0]);
-    setPreviewURL(imageURL);
     handlePreviewUrl(imageURL);
+    history.push('/preview')
   }
 
   return (
@@ -50,6 +49,7 @@ function InsertMedia({
 
 InsertMedia.propTypes = {
   handlePreviewUrl: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export default withRouter(InsertMedia);
