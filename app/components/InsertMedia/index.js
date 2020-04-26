@@ -5,33 +5,42 @@
  */
 
 import React from 'react';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { toLower } from 'lodash';
 
 import uploadIcon from 'images/icons/upload.svg';
 import Styled from './style';
 
-function InsertMedia({
-  handlePreviewUrl,
-  history,
-}) {
-
+function InsertMedia({ handlePreviewUrl, history }) {
   function handleImageChange(event) {
     const {
       target: { files, value },
     } = event;
-    const filePath =  toLower(value);
+    const filePath = toLower(value);
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.bmp|\.tiff|\.raw)$/i;
 
-    if(!allowedExtensions.exec(filePath)){
+    if (!allowedExtensions.exec(filePath)) {
       event.target.value = null;
-      return alert('Please upload file having extensions:\njpg, jpeg, png, bmp, tiff and raw only.');
-    }
+      alert(
+        'Please upload file having extensions:\njpg, jpeg, png, bmp, tiff and raw only.',
+      );
+    } else {
+      const imageURL = URL.createObjectURL(files[0]);
+      const img = new Image();
+      img.src = imageURL;
 
-    const imageURL = URL.createObjectURL(files[0]);
-    handlePreviewUrl(imageURL);
-    history.push('/preview')
+      img.onload = function() {
+        const { width, height } = this;
+
+        if (width === 1024 && height === 1024) {
+          handlePreviewUrl(imageURL);
+          history.push('/preview');
+        } else {
+          alert('Please uplod image having dimensions 1024 x 1024 pixels');
+        }
+      };
+    }
   }
 
   return (
@@ -50,7 +59,9 @@ function InsertMedia({
         </label>
         <Styled.List>
           <Styled.Item>Image should be 1024 x 1024 pixels</Styled.Item>
-          <Styled.Item>Acceptable file type: jpg, jpeg, png, bmp, tiff, raw</Styled.Item>
+          <Styled.Item>
+            Acceptable file type: jpg, jpeg, png, bmp, tiff, raw
+          </Styled.Item>
         </Styled.List>
       </Styled.Card>
     </Styled.Root>

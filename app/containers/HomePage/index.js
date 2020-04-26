@@ -18,15 +18,13 @@ import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export function HomePage({
-  onPreviewURL,
-}) {
+export function HomePage({ onPreviewURL }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
   function handlePreviewUrl(imageURL) {
-    console.log('imageURL', imageURL)
-    onPreviewURL(imageURL)
+    console.log('imageURL', imageURL);
+    onPreviewURL(imageURL);
   }
 
   return <InsertMedia handlePreviewUrl={handlePreviewUrl} />;

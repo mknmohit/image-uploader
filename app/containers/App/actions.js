@@ -16,10 +16,7 @@
  *    }
  */
 
-import {
-  PREVIEW_URL,
-} from './constants';
-
+import { PREVIEW_URL } from './constants';
 
 export function previewURL(params) {
   return {

@@ -12,7 +12,6 @@ import Styled from './style';
 
 
 function Preview({ previewURL }) {
-  console.log('Preview comp', previewURL)
 
   if(!isEmpty(previewURL)) {
     return <img src={previewURL} />

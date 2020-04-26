@@ -14,18 +14,13 @@ function Router({ previewURL }) {
       <Route
         exact
         path="/"
-        render={routeProps => (
-          <HomePage {...routeProps} />
-        )}
+        render={routeProps => <HomePage {...routeProps} />}
       />
       <Route
         exact
         path="/preview"
         render={routeProps => (
-          <Preview
-            {...routeProps}
-            previewURL={previewURL}
-          />
+          <Preview {...routeProps} previewURL={previewURL} />
         )}
       />
       <Route component={NotFoundPage} />

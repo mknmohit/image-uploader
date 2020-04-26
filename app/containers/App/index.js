@@ -13,16 +13,11 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import Router from '../../../router';
-import {
-  makeSelectPreviewURL,
-} from './selectors';
-
 import GlobalStyle from 'theme/globalStyles';
+import Router from '../../../router';
+import { makeSelectPreviewURL } from './selectors';
 
-export function App({
-  previewURL,
-}) {
+export function App({ previewURL }) {
   return (
     <div>
       <Router previewURL={previewURL} />
