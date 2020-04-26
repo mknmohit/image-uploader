@@ -4,13 +4,17 @@
  *
  */
 
-import React, { memo, useState } from 'react';
-// import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router'
+import PropTypes from 'prop-types';
 
 import uploadIcon from 'images/icons/upload.svg';
 import Styled from './style';
 
-function InsertMedia() {
+function InsertMedia({
+  handlePreviewUrl,
+}) {
+
   const [previewURL, setPreviewURL] = useState('');
 
   function handleImageChange(event) {
@@ -19,6 +23,7 @@ function InsertMedia() {
     } = event;
     const imageURL = URL.createObjectURL(files[0]);
     setPreviewURL(imageURL);
+    handlePreviewUrl(imageURL);
   }
 
   return (
@@ -43,6 +48,8 @@ function InsertMedia() {
   );
 }
 
-InsertMedia.propTypes = {};
+InsertMedia.propTypes = {
+  handlePreviewUrl: PropTypes.func,
+};
 
-export default memo(InsertMedia);
+export default withRouter(InsertMedia);
