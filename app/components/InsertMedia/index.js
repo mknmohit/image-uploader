@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import { toLower } from 'lodash';
 
 import uploadIcon from 'images/icons/upload.svg';
+import { OriginalImgSize } from 'containers/App/constants'
 import Styled from './style';
 
 function InsertMedia({ handlePreviewUrl, history }) {
@@ -32,8 +33,12 @@ function InsertMedia({ handlePreviewUrl, history }) {
 
       img.onload = function() {
         const { width, height } = this;
+        const {
+          width: reqWidth,
+          height: reqHeight,
+        } = OriginalImgSize
 
-        if (width === 1024 && height === 1024) {
+        if (width === reqWidth && height === reqHeight) {
           handlePreviewUrl(imageURL);
           history.push('/preview');
         } else {

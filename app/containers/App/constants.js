@@ -10,3 +10,15 @@
  */
 
 export const PREVIEW_URL = 'app/App/PREVIEW_URL';
+
+export const OriginalImgSize = {
+  width: 1024,
+  height: 1024,
+};
+
+export const CroppedImgSize = [
+  { width: 755, height: 450 },
+  { width: 365, height: 450 },
+  { width: 365, height: 212 },
+  { width: 380, height: 380 },
+];
