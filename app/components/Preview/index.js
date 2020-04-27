@@ -16,15 +16,19 @@ import Styled from './style';
 function Preview({ previewURL }) {
 
   const [imgRef, setImgRef] = useState(null);
-  const [cropInfo, setCropInfo] = useState({
-    unit: 'px',
-    width: 755,
-    height: 450,
-  });
+  const [cropInfo, setCropInfo] = useState(null);
   const [croppedUrl, setCroppedUrl] = useState();
 
   const onImageLoaded = useCallback(img => {
-    setImgRef(img);
+    setImgRef(img)
+    setCropInfo({
+      unit: 'px',
+      width: 755,
+      height: 450,
+      x: (1024 - 755 ) / 2,
+      y: (1024 - 450 ) / 2
+    })
+    return false;
   }, []);
 
   const onCropChange = crop => setCropInfo(crop);
@@ -69,6 +73,7 @@ function Preview({ previewURL }) {
   };
 
   if(!isEmpty(previewURL)) {
+    console.log(cropInfo)
     return (
       <div>
         <Styled.Root>
