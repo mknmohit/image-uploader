@@ -16,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    // display: flex;
     color: #fff;
     background-image: linear-gradient(
       to right bottom,
@@ -28,14 +27,6 @@ const GlobalStyle = createGlobalStyle`
     );
     min-height: 100%;
     min-width: 100%;
-  }
-
-  #app > div,
-  #app > div > div {
-    // display: flex;
-    // flex-direction: column;
-    // min-height: 100%;
-    // min-width: 100%;
   }
 
   p,
