@@ -12,19 +12,25 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import InsertMedia from 'components/InsertMedia';
+import { previewURL } from 'containers/App/actions';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export function HomePage() {
+export function HomePage({ onPreviewURL }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
-  return <div></div>;
+  function handlePreviewUrl(imageURL) {
+    onPreviewURL(imageURL);
+  }
+
+  return <InsertMedia handlePreviewUrl={handlePreviewUrl} />;
 }
 
 HomePage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  onPreviewURL: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -33,7 +39,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    onPreviewURL: params => dispatch(previewURL(params)),
   };
 }
 
