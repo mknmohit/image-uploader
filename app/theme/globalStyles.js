@@ -16,17 +16,26 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    display: flex;
-    background-color: #fafafa;
+    // display: flex;
+    color: #fff;
+    background-image: linear-gradient(
+      to right bottom,
+      #667eea,
+      #6e71d8,
+      #7364c6,
+      #7657b4,
+      #764ba2
+    );
     min-height: 100%;
     min-width: 100%;
   }
 
   #app > div,
   #app > div > div {
-    display: flex;
-    min-height: 100%;
-    min-width: 100%;
+    // display: flex;
+    // flex-direction: column;
+    // min-height: 100%;
+    // min-width: 100%;
   }
 
   p,

@@ -8,21 +8,43 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-
-import HomePage from 'containers/HomePage';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 import GlobalStyle from 'theme/globalStyles';
+import Router from '../../../router';
+import { makeSelectPreviewURL, makeSelectCropData } from './selectors';
 
-export default function App() {
+export function App({ previewURL, cropData }) {
   return (
     <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <Router previewURL={previewURL} cropData={cropData} />
       <GlobalStyle />
     </div>
   );
 }
+
+App.propTypes = {
+  previewURL: PropTypes.string,
+  cropData: PropTypes.array,
+};
+
+const mapStateToProps = createStructuredSelector({
+  previewURL: makeSelectPreviewURL(),
+  cropData: makeSelectCropData(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(withConnect)(App);
