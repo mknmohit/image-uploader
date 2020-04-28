@@ -28,4 +28,7 @@ export default async (image, crop, fileName) => {
       resolve(window.URL.createObjectURL(blob));
     }, 'image/jpg');
   });
+  // console.log("canvas.toDataURL('image/jpg')", canvas.toDataURL('image/jpg'))
+  // return canvas.toDataURL('image/jpg')
+
 };

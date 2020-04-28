@@ -4,107 +4,87 @@
  *
  */
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { NavLink } from 'react-router-dom';
-import { isEmpty } from 'lodash';
+import { isEmpty, map } from 'lodash';
 
+import { OriginalImgSize, CroppedImgSize } from 'containers/App/constants';
+import createCroppedImage from 'utils/createCroppedImage';
 import Styled from './style';
+import CroppedPreview from 'components/CroppedPreview';
 
 function Preview({ previewURL }) {
 
-  const [imgRef, setImgRef] = useState(null);
-  const [cropInfo, setCropInfo] = useState(null);
-  const [croppedUrl, setCroppedUrl] = useState();
+  const [cropData, setCropData] = useState([]);
 
-  const onImageLoaded = useCallback(img => {
-    setImgRef(img)
-    setCropInfo({
-      unit: 'px',
-      width: 755,
-      height: 450,
-      x: (1024 - 755 ) / 2,
-      y: (1024 - 450 ) / 2
+  useEffect(() => {
+    const imgInfo = map(CroppedImgSize, item => {
+      const { width, height } = item
+
+      return {
+        id: width+'x'+height,
+        width,
+        height,
+        coordinateX: ( origWidth - width ) / 2, 
+        coordinateY: ( origHeight - height ) / 2
+      }
     })
-    return false;
+    setCropData(imgInfo)
   }, []);
 
-  const onCropChange = crop => setCropInfo(crop);
+  const {
+    width: origWidth,
+    height: origHeight
+  } = OriginalImgSize
 
-  const onCropComplete = async crop => {
-    if (imgRef && crop.width && crop.height) {
-      createCropPreview(imgRef, crop, 'newFile.jpeg');
-    }
-  };
+  const getImageElement = () => {
+    const img = new Image()
+    img.src = previewURL
+    return img
+  }
 
-  const createCropPreview = async (image, crop, fileName) => {
-    const canvas = document.createElement('canvas');
-    const scaleX = image.naturalWidth / image.width;
-    const scaleY = image.naturalHeight / image.height;
-    canvas.width = crop.width;
-    canvas.height = crop.height;
-    const ctx = canvas.getContext('2d');
+  const getCoordinateX = () => {
 
-    ctx.drawImage(
-      image,
-      crop.x * scaleX,
-      crop.y * scaleY,
-      crop.width * scaleX,
-      crop.height * scaleY,
-      0,
-      0,
-      crop.width,
-      crop.height
-    );
+  }
 
-    return new Promise((resolve, reject) => {
-      canvas.toBlob(blob => {
-        if (!blob) {
-          reject(new Error('Canvas is empty'));
-          return;
-        }
-        blob.name = fileName;
-        window.URL.revokeObjectURL(croppedUrl);
-        setCroppedUrl(window.URL.createObjectURL(blob));
-      }, 'image/jpeg');
-    });
-  };
+  const renderCroppedPreview = () => (
+    map(cropData, item => {
+      const { id, width, height, coordinateX, coordinateY } = item
+      return (
+        <CroppedPreview
+          key={id}
+          image={getImageElement()}
+          width={width}
+          height={height}
+          coordinateX={coordinateX}
+          coordinateY={coordinateY}
+        />
+      )
+    })
+  )
 
   if(!isEmpty(previewURL)) {
-    console.log(cropInfo)
     return (
       <div>
         <Styled.Root>
           <Styled.Card>
-            {/* <a href={previewURL} target="_blank">
-              <Styled.OriginalImg src={previewURL} />
-            </a> */}
-
-            <ReactCrop
-              src={previewURL}
-              crop={cropInfo}
-              minWidth={755}
-              maxWidth={755}
-              minHeight={450}
-              maxHeight={450}
-              ruleOfThirds
-              onImageLoaded={onImageLoaded}
-              onChange={onCropChange}
-              onComplete={onCropComplete}
-            />
+            <a href={previewURL} target="_blank">
+              <img src={previewURL} alt={origWidth+'x'+origHeight} />
+            </a>
             
             <Styled.CardContent>
               <Styled.ImgInfo>
-                Original Image: 1024 x 1024
+                Original Image: {origWidth} x {origHeight}
               </Styled.ImgInfo>
               <Styled.RemoveBtn to="/">
                 Change
               </Styled.RemoveBtn>
             </Styled.CardContent>
           </Styled.Card>
-          {croppedUrl && <img alt="Crop preview" src={croppedUrl} />}
+          {renderCroppedPreview()}
         </Styled.Root>
       </div>
     )

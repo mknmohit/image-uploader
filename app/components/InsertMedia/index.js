@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { toLower } from 'lodash';
 
 import uploadIcon from 'images/icons/upload.svg';
-import { OriginalImgSize } from 'containers/App/constants'
+import { OriginalImgSize } from 'containers/App/constants';
 import Styled from './style';
 
 function InsertMedia({ handlePreviewUrl, history }) {
