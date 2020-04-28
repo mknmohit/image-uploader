@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import theme from 'theme/variables';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -20,15 +21,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    color: #fff;
-    background-image: linear-gradient(
-      to right bottom,
-      #667eea,
-      #6e71d8,
-      #7364c6,
-      #7657b4,
-      #764ba2
-    );
+    color: ${theme.base};
+    background-image: ${theme.primary};
     min-height: 100%;
     min-width: 100%;
   }

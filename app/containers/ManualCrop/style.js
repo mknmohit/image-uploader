@@ -42,14 +42,7 @@ const SaveBtn = styled(NavLink)`
   font-size: 16px;
   font-weight: bold;
   text-decoration: none;
-  background-image: linear-gradient(
-    to left top,
-    #98de5b,
-    #7ee070,
-    #63e185,
-    #43e19a,
-    #08e1ae
-  );
+  background-image: ${props => props.theme.success};
 `;
 
 export default {

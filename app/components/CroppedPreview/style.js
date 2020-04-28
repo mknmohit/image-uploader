@@ -39,27 +39,13 @@ const ImgInfo = styled.p`
 const CropBtn = styled(NavLink)`
   ${btnStyles};
   color: ${props => props.theme.base};
-  background-image: linear-gradient(
-    to right bottom,
-    #00c7d4,
-    #00bce5,
-    #00aef5,
-    #009dff,
-    #0088ff
-  );
+  background-image: ${props => props.theme.blue};
 `;
 
 const DownloadBtn = styled.a`
   ${btnStyles};
   color: ${props => props.theme.base};
-  background-image: linear-gradient(
-    to left top,
-    #98de5b,
-    #7ee070,
-    #63e185,
-    #43e19a,
-    #08e1ae
-  );
+  background-image: ${props => props.theme.success};
 `;
 
 export default {

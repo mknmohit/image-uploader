@@ -45,14 +45,7 @@ const RemoveBtn = styled(NavLink)`
   font-size: 16px;
   font-weight: bold;
   text-decoration: none;
-  background-image: linear-gradient(
-    to right bottom,
-    #ff7eb3,
-    #ff7eb3,
-    #ff7eb3,
-    #ff7eb3,
-    #ff7eb3
-  );
+  background-image: ${props => props.theme.warning};
 `;
 
 export default {
