@@ -11,6 +11,8 @@
 
 export const PREVIEW_URL = 'app/App/PREVIEW_URL';
 
+export const CROP_DATA = 'app/App/CROP_DATA';
+
 export const OriginalImgSize = {
   width: 1024,
   height: 1024,

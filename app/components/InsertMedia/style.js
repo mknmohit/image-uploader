@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Root = styled.div`
   display: flex;
   min-width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   align-items: center;
   justify-content: center;
 `;
