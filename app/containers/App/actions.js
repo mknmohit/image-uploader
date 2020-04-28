@@ -16,11 +16,18 @@
  *    }
  */
 
-import { PREVIEW_URL } from './constants';
+import { PREVIEW_URL, CROP_DATA } from './constants';
 
 export function previewURL(params) {
   return {
     type: PREVIEW_URL,
+    params,
+  };
+}
+
+export function updateCropData(params) {
+  return {
+    type: CROP_DATA,
     params,
   };
 }
