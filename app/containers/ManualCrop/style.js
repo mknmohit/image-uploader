@@ -10,16 +10,15 @@ const Card = styled.div`
   display: inline-flex;
   flex-direction: column;
   color: initial;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  border-bottom-right-radius: 16px;
-  border-bottom-left-radius: 16px;
-  margin: 16px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  margin: 16px 16px 120px;
   background-color: ${props => props.theme.base};
 `;
 
-const OriginalImg = styled.img`
-  max-width: 420px;
-`;
+const Container = styled.div``;
 
 const CardContent = styled.div`
   padding: 16px;
@@ -31,9 +30,9 @@ const CardContent = styled.div`
 const ImgInfo = styled.p`
   margin: 0 0 12px;
   color: gray;
-`
+`;
 
-const RemoveBtn = styled(NavLink)`
+const SaveBtn = styled(NavLink)`
   cursor: pointer;
   border-radius: 24px;
   padding: 12px 40px;
@@ -44,16 +43,18 @@ const RemoveBtn = styled(NavLink)`
   font-weight: bold;
   text-decoration: none;
   background-image: linear-gradient(
-    to right bottom,
-    #00c7d4,
-    #00bce5,
-    #00aef5,
-    #009dff,
-    #0088ff
+    to left top,
+    #98de5b,
+    #7ee070,
+    #63e185,
+    #43e19a,
+    #08e1ae
   );
 `;
 
 const NoPreview = styled.div`
+  display: flex;
+  height: 100vh;
   justify-content: center;
   align-items: center;
 `;
@@ -66,12 +67,12 @@ const NoPreviewMsg = styled.div`
 `;
 
 export default {
-  Card,
   Root,
-  OriginalImg,
+  Card,
+  Container,
   CardContent,
   ImgInfo,
-  RemoveBtn,
+  SaveBtn,
   NoPreview,
   NoPreviewMsg,
 };

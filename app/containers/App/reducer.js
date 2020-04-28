@@ -8,10 +8,11 @@
  *
  */
 import produce from 'immer';
-import { PREVIEW_URL } from './constants';
+import { PREVIEW_URL, CROP_DATA } from './constants';
 
 export const initialState = {
   previewURL: null,
+  cropData: null,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -20,6 +21,10 @@ const appReducer = (state = initialState, action) =>
     switch (action.type) {
       case PREVIEW_URL:
         draft.previewURL = action.params;
+        break;
+
+      case CROP_DATA:
+        draft.cropData = action.params;
         break;
     }
   });
