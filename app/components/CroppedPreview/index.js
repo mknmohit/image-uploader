@@ -27,7 +27,7 @@ function CroppedPreview({
       x: coordinateX,
       y: coordinateY
     }
-    createCroppedImage(image, cropInfo, 'newFile.jpeg').then(url => setCroppedUrl(url))
+    createCroppedImage(image, cropInfo, 'newFile.jpg').then(url => setCroppedUrl(url))
   }, []);
 
   return (
@@ -39,7 +39,7 @@ function CroppedPreview({
         <Styled.ImgInfo>
           Cropped Image: {width} x {height}
         </Styled.ImgInfo>
-        <Styled.RemoveBtn href="/">
+        <Styled.RemoveBtn to={`/crop/${width}x${height}`}>
           Crop Manually
         </Styled.RemoveBtn>
     </Styled.CardContent>
@@ -53,7 +53,6 @@ CroppedPreview.propTypes = {
   height: PropTypes.number,
   coordinateX: PropTypes.number,
   coordinateY: PropTypes.number,
-
 };
 
 export default CroppedPreview;

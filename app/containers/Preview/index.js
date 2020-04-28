@@ -16,8 +16,8 @@ import { isEmpty, map } from 'lodash';
 import { OriginalImgSize, CroppedImgSize } from 'containers/App/constants';
 import { updateCropData } from 'containers/App/actions'
 import createCroppedImage from 'utils/createCroppedImage';
-import Styled from './style';
 import CroppedPreview from 'components/CroppedPreview';
+import Styled from './style';
 
 export function Preview({ previewURL, cropData, onUpdateCropData }) {
 
@@ -29,7 +29,7 @@ export function Preview({ previewURL, cropData, onUpdateCropData }) {
         id: width+'x'+height,
         width,
         height,
-        coordinateX: ( origWidth - width ) / 2, 
+        coordinateX: ( origWidth - width ) / 2,
         coordinateY: ( origHeight - height ) / 2
       }
     })
@@ -71,20 +71,22 @@ export function Preview({ previewURL, cropData, onUpdateCropData }) {
     return (
       <div>
         <Styled.Root>
-          <Styled.Card>
-            <a href={previewURL} target="_blank">
-              <img src={previewURL} alt={origWidth+'x'+origHeight} />
-            </a>
-            
-            <Styled.CardContent>
-              <Styled.ImgInfo>
-                Original Image: {origWidth} x {origHeight}
-              </Styled.ImgInfo>
-              <Styled.RemoveBtn to="/">
-                Change
-              </Styled.RemoveBtn>
-            </Styled.CardContent>
-          </Styled.Card>
+          <Styled.Container>
+            <Styled.Card>
+              <a href={previewURL} target="_blank">
+                <img src={previewURL} alt={origWidth+'x'+origHeight} />
+              </a>
+              
+              <Styled.CardContent>
+                <Styled.ImgInfo>
+                  Original Image: {origWidth} x {origHeight}
+                </Styled.ImgInfo>
+                <Styled.RemoveBtn to="/">
+                  Change
+                </Styled.RemoveBtn>
+              </Styled.CardContent>
+            </Styled.Card>
+          </Styled.Container>
           {renderCroppedPreview()}
         </Styled.Root>
       </div>

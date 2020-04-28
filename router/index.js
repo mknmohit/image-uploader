@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import HomePage from 'containers/HomePage';
 import Preview from 'containers/Preview';
+import ManualCrop from 'containers/ManualCrop';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 /* eslint-disable react/jsx-no-bind */
@@ -21,6 +22,13 @@ function Router({ previewURL, cropData }) {
         path="/preview"
         render={routeProps => (
           <Preview {...routeProps} previewURL={previewURL} cropData={cropData} />
+        )}
+      />
+      <Route
+        exact
+        path="/crop/:id"
+        render={routeProps => (
+          <ManualCrop {...routeProps} previewURL={previewURL} cropData={cropData} />
         )}
       />
       <Route component={NotFoundPage} />

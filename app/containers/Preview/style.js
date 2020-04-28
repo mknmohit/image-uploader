@@ -17,6 +17,11 @@ const Card = styled.div`
   background-color: ${props => props.theme.base};
 `;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const CardContent = styled.div`
   padding: 16px;
   margin-top: 12px;
@@ -43,6 +48,8 @@ const RemoveBtn = styled(NavLink)`
 `;
 
 const NoPreview = styled.div`
+  display: flex;
+  height: 100vh;
   justify-content: center;
   align-items: center;
 `;
@@ -56,6 +63,7 @@ const NoPreviewMsg = styled.div`
 
 export default {
   Root,
+  Container,
   Card,
   CardContent,
   ImgInfo,
