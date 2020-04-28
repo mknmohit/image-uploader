@@ -9,12 +9,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import 'react-image-crop/dist/ReactCrop.css';
-import { NavLink } from 'react-router-dom';
 import { isEmpty, map } from 'lodash';
 
 import { OriginalImgSize, CroppedImgSize } from 'containers/App/constants';
 import { updateCropData } from 'containers/App/actions';
 import CroppedPreview from 'components/CroppedPreview';
+import PreviewError from 'components/PreviewError';
 import Styled from './style';
 
 export function Preview({ previewURL, cropData, onUpdateCropData }) {
@@ -79,14 +79,7 @@ export function Preview({ previewURL, cropData, onUpdateCropData }) {
       </div>
     );
   }
-  return (
-    <Styled.NoPreview>
-      <Styled.NoPreviewMsg>
-        Please choose/upload the image first.{' '}
-        <NavLink to="/">Click Here</NavLink>
-      </Styled.NoPreviewMsg>
-    </Styled.NoPreview>
-  );
+  return <PreviewError />
 }
 
 Preview.propTypes = {

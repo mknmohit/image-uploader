@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+
   #app {
     color: #fff;
     background-image: linear-gradient(

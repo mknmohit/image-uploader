@@ -15,7 +15,7 @@ import 'react-image-crop/dist/ReactCrop.css';
 
 import { updateCropData } from 'containers/App/actions';
 import createCroppedImage from 'utils/createCroppedImage';
-
+import PreviewError from 'components/PreviewError';
 import Styled from './style';
 
 export function ManualCrop({ previewURL, cropData, match, onUpdateCropData }) {
@@ -113,14 +113,7 @@ export function ManualCrop({ previewURL, cropData, match, onUpdateCropData }) {
       </Styled.Root>
     );
   }
-  return (
-    <Styled.NoPreview>
-      <Styled.NoPreviewMsg>
-        Please choose/upload the image first.{' '}
-        <NavLink to="/">Click Here</NavLink>
-      </Styled.NoPreviewMsg>
-    </Styled.NoPreview>
-  );
+  return <PreviewError />
 }
 
 ManualCrop.propTypes = {
