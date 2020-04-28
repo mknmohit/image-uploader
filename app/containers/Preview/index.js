@@ -4,21 +4,22 @@
  *
  */
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { memo, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { NavLink } from 'react-router-dom';
 import { isEmpty, map } from 'lodash';
 
 import { OriginalImgSize, CroppedImgSize } from 'containers/App/constants';
+import { updateCropData } from 'containers/App/actions'
 import createCroppedImage from 'utils/createCroppedImage';
 import Styled from './style';
 import CroppedPreview from 'components/CroppedPreview';
 
-function Preview({ previewURL }) {
-
-  const [cropData, setCropData] = useState([]);
+export function Preview({ previewURL, cropData, onUpdateCropData }) {
 
   useEffect(() => {
     const imgInfo = map(CroppedImgSize, item => {
@@ -32,7 +33,7 @@ function Preview({ previewURL }) {
         coordinateY: ( origHeight - height ) / 2
       }
     })
-    setCropData(imgInfo)
+    onUpdateCropData(imgInfo)
   }, []);
 
   const {
@@ -101,6 +102,22 @@ function Preview({ previewURL }) {
 
 Preview.propTypes = {
   previewURL: PropTypes.string,
+  cropData: PropTypes.array,
+  onUpdateCropData: PropTypes.func,
 };
 
-export default Preview;
+function mapDispatchToProps(dispatch) {
+  return {
+    onUpdateCropData: params => dispatch(updateCropData(params)),
+  };
+}
+
+const withConnect = connect(
+  null,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(Preview);

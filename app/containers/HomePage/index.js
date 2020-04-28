@@ -31,7 +31,6 @@ export function HomePage({ onPreviewURL }) {
 }
 
 HomePage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   onPreviewURL: PropTypes.func,
 };
 
@@ -41,7 +40,6 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
     onPreviewURL: params => dispatch(previewURL(params)),
   };
 }
