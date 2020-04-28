@@ -39,14 +39,7 @@ const UploadBtn = styled.div`
   margin: 0 auto 36px auto;
   font-size: 16px;
   font-weight: bold;
-  background-image: linear-gradient(
-    to right bottom,
-    #00c7d4,
-    #00bce5,
-    #00aef5,
-    #009dff,
-    #0088ff
-  );
+  background-image: ${props => props.theme.blue};
 `;
 
 const List = styled.ul`

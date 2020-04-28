@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import theme from 'theme/variables';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -15,27 +16,15 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
-  #app {
-    // display: flex;
-    color: #fff;
-    background-image: linear-gradient(
-      to right bottom,
-      #667eea,
-      #6e71d8,
-      #7364c6,
-      #7657b4,
-      #764ba2
-    );
-    min-height: 100%;
-    min-width: 100%;
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
   }
 
-  #app > div,
-  #app > div > div {
-    // display: flex;
-    // flex-direction: column;
-    // min-height: 100%;
-    // min-width: 100%;
+  #app {
+    color: ${theme.base};
+    background-image: ${theme.primary};
+    min-height: 100%;
+    min-width: 100%;
   }
 
   p,

@@ -45,28 +45,7 @@ const RemoveBtn = styled(NavLink)`
   font-size: 16px;
   font-weight: bold;
   text-decoration: none;
-  background-image: linear-gradient(
-    to right bottom,
-    #ff7eb3,
-    #ff7eb3,
-    #ff7eb3,
-    #ff7eb3,
-    #ff7eb3
-  );
-`;
-
-const NoPreview = styled.div`
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-`;
-
-const NoPreviewMsg = styled.div`
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  padding: 60px;
-  border-radius: 8px;
+  background-image: ${props => props.theme.warning};
 `;
 
 export default {
@@ -76,6 +55,4 @@ export default {
   CardContent,
   ImgInfo,
   RemoveBtn,
-  NoPreview,
-  NoPreviewMsg,
 };
