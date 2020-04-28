@@ -21,14 +21,22 @@ function Router({ previewURL, cropData }) {
         exact
         path="/preview"
         render={routeProps => (
-          <Preview {...routeProps} previewURL={previewURL} cropData={cropData} />
+          <Preview
+            {...routeProps}
+            previewURL={previewURL}
+            cropData={cropData}
+          />
         )}
       />
       <Route
         exact
         path="/crop/:id"
         render={routeProps => (
-          <ManualCrop {...routeProps} previewURL={previewURL} cropData={cropData} />
+          <ManualCrop
+            {...routeProps}
+            previewURL={previewURL}
+            cropData={cropData}
+          />
         )}
       />
       <Route component={NotFoundPage} />

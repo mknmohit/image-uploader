@@ -13,38 +13,31 @@ import { NavLink } from 'react-router-dom';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
-import { updateCropData } from 'containers/App/actions'
+import { updateCropData } from 'containers/App/actions';
 import createCroppedImage from 'utils/createCroppedImage';
-
 
 import Styled from './style';
 
 export function ManualCrop({ previewURL, cropData, match, onUpdateCropData }) {
-
   const [imgRef, setImgRef] = useState(null);
   const [cropInfo, setCropInfo] = useState(null);
   const [croppedUrl, setCroppedUrl] = useState();
 
   const onImageLoaded = useCallback(img => {
     const {
-      params: { id }
-    } = match
-    const reqCropData = find(cropData, { id })
-    const {
-      width,
-      height,
-      coordinateX: x,
-      coordinateY: y,
-    } = reqCropData
+      params: { id },
+    } = match;
+    const reqCropData = find(cropData, { id });
+    const { width, height, coordinateX: x, coordinateY: y } = reqCropData;
 
-    setImgRef(img)
+    setImgRef(img);
     setCropInfo({
       unit: 'px',
       width,
       height,
       x,
-      y
-    })
+      y,
+    });
     return false;
   }, []);
 
@@ -52,46 +45,39 @@ export function ManualCrop({ previewURL, cropData, match, onUpdateCropData }) {
 
   const onCropComplete = async crop => {
     if (imgRef && crop.width && crop.height) {
-      createCroppedImage(imgRef, crop, 'newFile.jpg').then(url => setCroppedUrl(url))
+      createCroppedImage(imgRef, crop, 'newFile.jpg').then(url =>
+        setCroppedUrl(url),
+      );
     }
   };
 
   const handleSavePreview = () => {
     const {
-      params: { id }
-    } = match
-    const { width, height, x, y } = cropInfo
+      params: { id },
+    } = match;
+    const { width, height, x, y } = cropInfo;
     const updatedData = map(cropData, item => {
-      const {
-        id: imgId,
-      } = item
-      if(id === imgId) {
+      const { id: imgId } = item;
+      if (id === imgId) {
         return {
           id,
           width,
           height,
           coordinateX: x,
-          coordinateY: y
-        }
+          coordinateY: y,
+        };
       }
-      return item
-    })
-    console.log('updatedData', updatedData)
-    onUpdateCropData(updatedData)
-  }
+      return item;
+    });
+    onUpdateCropData(updatedData);
+  };
 
-  if(!isEmpty(previewURL)) {
+  if (!isEmpty(previewURL)) {
     const {
-      params: { id }
-    } = match
-    const reqCropData = find(cropData, { id })
-    const {
-      width,
-      height,
-      coordinateX: x,
-      coordinateY: y,
-    } = reqCropData
-    const crop = { width, height, x, y}
+      params: { id },
+    } = match;
+    const reqCropData = find(cropData, { id });
+    const { width, height, coordinateX: x, coordinateY: y } = reqCropData;
 
     return (
       <Styled.Root>
@@ -111,7 +97,7 @@ export function ManualCrop({ previewURL, cropData, match, onUpdateCropData }) {
           <Styled.Container>
             <Styled.Card>
               <a href={croppedUrl} target="_blank">
-                <img src={croppedUrl} alt={width+'x'+height} />
+                <img src={croppedUrl} alt={`${width}x${height}`} />
               </a>
               <Styled.CardContent>
                 <Styled.ImgInfo>
@@ -125,12 +111,13 @@ export function ManualCrop({ previewURL, cropData, match, onUpdateCropData }) {
           </Styled.Container>
         )}
       </Styled.Root>
-    )
+    );
   }
   return (
     <Styled.NoPreview>
       <Styled.NoPreviewMsg>
-        Please choose/upload the image first. <NavLink to="/">Click Here</NavLink>
+        Please choose/upload the image first.{' '}
+        <NavLink to="/">Click Here</NavLink>
       </Styled.NoPreviewMsg>
     </Styled.NoPreview>
   );

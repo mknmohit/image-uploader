@@ -10,14 +10,7 @@ import PropTypes from 'prop-types';
 import createCroppedImage from 'utils/createCroppedImage';
 import Styled from './style';
 
-function CroppedPreview({
-  image,
-  width,
-  height,
-  coordinateX,
-  coordinateY,
-}) {
-
+function CroppedPreview({ image, width, height, coordinateX, coordinateY }) {
   const [croppedUrl, setCroppedUrl] = useState(null);
 
   useEffect(() => {
@@ -25,24 +18,32 @@ function CroppedPreview({
       width,
       height,
       x: coordinateX,
-      y: coordinateY
-    }
-    createCroppedImage(image, cropInfo, 'newFile.jpg').then(url => setCroppedUrl(url))
+      y: coordinateY,
+    };
+    createCroppedImage(image, cropInfo, 'newFile.jpg').then(url =>
+      setCroppedUrl(url),
+    );
   }, []);
 
   return (
     <Styled.Card>
       <a href={croppedUrl} target="_blank">
-        <img src={croppedUrl} alt={width+'x'+height} />
+        <img src={croppedUrl} alt={`${width}x${height}`} />
       </a>
       <Styled.CardContent>
         <Styled.ImgInfo>
           Cropped Image: {width} x {height}
         </Styled.ImgInfo>
-        <Styled.RemoveBtn to={`/crop/${width}x${height}`}>
+        <Styled.CropBtn to={`/crop/${width}x${height}`}>
           Crop Manually
-        </Styled.RemoveBtn>
-    </Styled.CardContent>
+        </Styled.CropBtn>
+        <Styled.DownloadBtn
+          download={`crop${width}x${height}.jpg`}
+          href={croppedUrl}
+        >
+          Download
+        </Styled.DownloadBtn>
+      </Styled.CardContent>
     </Styled.Card>
   );
 }

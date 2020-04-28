@@ -9,17 +9,10 @@
  */
 import produce from 'immer';
 import { PREVIEW_URL, CROP_DATA } from './constants';
-import DummyImg from 'images/dummy.jpg';
 
 export const initialState = {
   previewURL: null,
   cropData: null,
-  // cropData: [
-  //   {id: "755x450", width: 755, height: 450, coordinateX: 134.5, coordinateY: 287},
-  //   {id: "365x450", width: 365, height: 450, coordinateX: 329.5, coordinateY: 287},
-  //   {id: "365x212", width: 365, height: 212, coordinateX: 329.5, coordinateY: 406},
-  //   {id: "380x380", width: 380, height: 380, coordinateX: 322, coordinateY: 322}
-  // ]
 };
 
 /* eslint-disable default-case, no-param-reassign */

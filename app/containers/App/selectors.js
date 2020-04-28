@@ -27,8 +27,4 @@ const makeSelectLocation = () =>
     routerState => routerState.location,
   );
 
-export {
-  makeSelectPreviewURL,
-  makeSelectCropData,
-  makeSelectLocation
-};
+export { makeSelectPreviewURL, makeSelectCropData, makeSelectLocation };

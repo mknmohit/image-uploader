@@ -23,7 +23,6 @@ export function HomePage({ onPreviewURL }) {
   useInjectSaga({ key: 'homePage', saga });
 
   function handlePreviewUrl(imageURL) {
-    console.log('imageURL', imageURL);
     onPreviewURL(imageURL);
   }
 

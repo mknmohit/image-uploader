@@ -33,10 +33,7 @@ function InsertMedia({ handlePreviewUrl, history }) {
 
       img.onload = function() {
         const { width, height } = this;
-        const {
-          width: reqWidth,
-          height: reqHeight,
-        } = OriginalImgSize
+        const { width: reqWidth, height: reqHeight } = OriginalImgSize;
 
         if (width === reqWidth && height === reqHeight) {
           handlePreviewUrl(imageURL);
