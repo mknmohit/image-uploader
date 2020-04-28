@@ -15,7 +15,7 @@ export default async (image, crop, fileName) => {
     0,
     0,
     crop.width,
-    crop.height
+    crop.height,
   );
 
   return new Promise((resolve, reject) => {

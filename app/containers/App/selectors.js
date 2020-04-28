@@ -15,10 +15,16 @@ const makeSelectPreviewURL = () =>
     globalState => globalState.previewURL,
   );
 
+const makeSelectCropData = () =>
+  createSelector(
+    selectGlobal,
+    globalState => globalState.cropData,
+  );
+
 const makeSelectLocation = () =>
   createSelector(
     selectRouter,
     routerState => routerState.location,
   );
 
-export { makeSelectPreviewURL, makeSelectLocation };
+export { makeSelectPreviewURL, makeSelectCropData, makeSelectLocation };

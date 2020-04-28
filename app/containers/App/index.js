@@ -15,12 +15,12 @@ import { compose } from 'redux';
 
 import GlobalStyle from 'theme/globalStyles';
 import Router from '../../../router';
-import { makeSelectPreviewURL } from './selectors';
+import { makeSelectPreviewURL, makeSelectCropData } from './selectors';
 
-export function App({ previewURL }) {
+export function App({ previewURL, cropData }) {
   return (
     <div>
-      <Router previewURL={previewURL} />
+      <Router previewURL={previewURL} cropData={cropData} />
       <GlobalStyle />
     </div>
   );
@@ -28,10 +28,12 @@ export function App({ previewURL }) {
 
 App.propTypes = {
   previewURL: PropTypes.string,
+  cropData: PropTypes.array,
 };
 
 const mapStateToProps = createStructuredSelector({
   previewURL: makeSelectPreviewURL(),
+  cropData: makeSelectCropData(),
 });
 
 function mapDispatchToProps(dispatch) {
