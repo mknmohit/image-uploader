@@ -7,13 +7,19 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { NavLink } from 'react-router-dom';
 
 import messages from './messages';
 
 export default function NotFound() {
   return (
-    <h1>
+    <div>
+      <h1>
       <FormattedMessage {...messages.header} />
+      <div>
+        <NavLink to="/">Back to Home</NavLink>
+      </div>
     </h1>
+    </div>
   );
 }
